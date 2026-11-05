@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>💖 For My #1 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body { height: 100%; overflow: hidden; }
+
+    /* =====================================================
+       PAGE 1 — LOVE / PINK — MOBILE FIRST, NO SCROLL
+    ===================================================== */
+    #page1 {
+      /* dvh = dynamic viewport height (handles mobile address bar) */
+      height: 100vh;
+      height: 100dvh;
+      width: 100vw;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 20%, #ffb3c6 40%, #ff6b9d 60%, #c9184a 80%, #ff4d8b 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      /* compact mobile gaps */
+      gap: 7px;
+      padding: 10px 14px;
+      /* Safe area for notched iPhones */
+      padding-top:    max(10px, env(safe-area-inset-top));
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0%,100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    /* ── floating hearts (lighter on mobile so it doesn't lag) ── */
+    .floating-hearts {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .heart-float {
+      position: absolute; bottom: -60px;
+      animation: floatUp linear infinite; opacity: 0.5;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── TITLE ── */
+    .p1-title {
+      position: relative; z-index: 2;
+      font-family: 'Great Vibes', cursive;
+      /* Mobile: ~2rem | Tablet: ~3.5rem | Desktop: ~5rem */
+      font-size: clamp(1.9rem, 8vw, 5rem);
+      color: #fff;
+      text-shadow:
+        0 0 15px rgba(255,255,255,0.95),
+        0 0 40px rgba(255,80,140,0.9),
+        2px 2px 6px rgba(0,0,0,0.35);
+      text-align: center;
+      line-height: 1.1;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.03); }
+    }
+
+    .rose-line {
+      position: relative; z-index: 2;
+      font-size: clamp(0.9rem, 3vw, 1.3rem);
+      letter-spacing: 8px;
+      line-height: 1;
+      animation: sparkle 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes sparkle {
+      from { filter: brightness(1); }
+      to   { filter: brightness(1.5) drop-shadow(0 0 8px #ff69b4); }
+    }
+
+    /* ── VIDEO WRAPPER ──
+       Video file = landscape. rotate(-90deg) → portrait on screen.
+       Wrapper = visual (portrait) dimensions.
+
+       Mobile sizing:
+         visual width  ≈ 26vh   (small phones: 26 * 6.4 ≈ 166px)
+         visual height ≈ 46vh   (small phones: 46 * 6.4 ≈ 294px)
+
+       Desktop sizing (via media query):
+         visual width  ≈ 28vh
+         visual height ≈ 50vh
+    */
+    .video-col {
+      position: relative; z-index: 2;
+      flex-shrink: 0;
+      width:  26vh;
+      height: 46vh;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      outline: 3px solid #ff6b9d;
+      outline-offset: 2px;
+      box-shadow:
+        0 0 0 6px rgba(255,107,157,0.5),
+        0 0 35px rgba(255,80,140,1),
+        0 0 65px rgba(255,50,120,0.6),
+        0 8px 30px rgba(0,0,0,0.5);
+      animation: glowBorder 2s ease-in-out infinite alternate;
+    }
+    @keyframes glowBorder {
+      from { box-shadow: 0 0 0 6px rgba(255,107,157,0.4), 0 0 25px rgba(255,80,140,0.8),  0 8px 25px rgba(0,0,0,0.4); outline-color: #ff6b9d; }
+      to   { box-shadow: 0 0 0 6px rgba(255,50,120,0.7),  0 0 55px rgba(255,20,100,1),    0 8px 40px rgba(0,0,0,0.6); outline-color: #fff; }
+    }
+
+    .video-col video {
+      position: absolute; top: 50%; left: 50%;
+      /* landscape element dims = swapped wrapper dims */
+      width:  46vh;
+      height: 26vh;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      display: block;
+    }
+
+    /* ── HINT BANNER ── */
+    .hint-banner {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.68rem, 2.5vw, 0.9rem);
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.25);
+      width: min(90vw, 420px);
+    }
+
+    /* ── QUESTION CARD ── */
+    .question-card {
+      position: relative; z-index: 2;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 18px;
+      padding: 15px 18px;
+      width: min(90vw, 460px);
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .question-text {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(0.95rem, 4vw, 1.5rem);
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .answer-input {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 50px;
+      border: 2.5px solid rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.22);
+      font-family: 'Nunito', sans-serif;
+      /* 16px min prevents iOS auto-zoom on focus */
+      font-size: max(16px, 1rem);
+      color: #fff;
+      text-align: center;
+      outline: none;
+      transition: all 0.3s;
+      letter-spacing: 2px;
+      /* iOS safari fix */
+      -webkit-appearance: none;
+    }
+    .answer-input::placeholder { color: rgba(255,255,255,0.65); }
+    .answer-input:focus {
+      background: rgba(255,255,255,0.33);
+      border-color: #fff;
+      box-shadow: 0 0 18px rgba(255,255,255,0.4);
+    }
+
+    .submit-btn {
+      margin-top: 10px;
+      padding: 13px 36px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #fff 0%, #ffe0eb 100%);
+      color: #c9184a;
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      cursor: pointer;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      /* touch: bigger tap area, faster response */
+      touch-action: manipulation;
+      min-height: 48px;
+    }
+    .submit-btn:active { transform: scale(0.95); box-shadow: 0 3px 12px rgba(0,0,0,0.2); }
+
+    .error-msg {
+      margin-top: 8px;
+      color: #ffe0eb;
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.82rem, 3vw, 0.95rem);
+      display: none;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-8px); }
+      75%      { transform: translateX(8px); }
+    }
+
+    /* ── Desktop: slightly bigger ── */
+    @media (min-width: 768px) and (min-height: 700px) {
+      #page1 { gap: 10px; }
+      .video-col         { width: 28vh; height: 50vh; }
+      .video-col video   { width: 50vh; height: 28vh; }
+    }
+
+    /* ── Very small phones (< 380px wide or < 650px tall) ── */
+    @media (max-height: 650px) {
+      .video-col         { width: 22vh; height: 38vh; }
+      .video-col video   { width: 38vh; height: 22vh; }
+      #page1             { gap: 5px; }
+      .p1-title          { font-size: clamp(1.5rem, 7vw, 2.5rem); }
+    }
+
+    /* =====================================================
+       PAGE 2 — TROLL / FUNNY — MOBILE OPTIMIZED
+    ===================================================== */
+    #page2 {
+      display: none;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF6347 50%, #FFD700 75%, #FFF44F 100%);
+      background-size: 400% 400%;
+      animation: trollGrad 3s ease infinite;
+      position: relative; overflow: hidden;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px 40px;
+      padding-bottom: max(40px, env(safe-area-inset-bottom));
+    }
+    @keyframes trollGrad {
+      0%,100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    .troll-emoji {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+    @keyframes trollSpin   { 0%{transform:rotate(0deg) scale(1);} 50%{transform:rotate(180deg) scale(1.3);} 100%{transform:rotate(360deg) scale(1);} }
+    @keyframes trollBounce { 0%,100%{transform:translateY(0) rotate(0);} 25%{transform:translateY(-25px) rotate(90deg);} 75%{transform:translateY(25px) rotate(270deg);} }
+    @keyframes trollFloat  { 0%{transform:translateX(0) rotate(0);} 33%{transform:translateX(35px) rotate(120deg);} 66%{transform:translateX(-25px) rotate(240deg);} 100%{transform:translateX(0) rotate(360deg);} }
+
+    .p2-header {
+      position: relative; z-index: 2;
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 8vw, 4rem);
+      color: #fff; text-align: center;
+      text-shadow: 3px 3px 0 #c41a00, 0 0 25px rgba(255,100,0,0.8);
+      animation: trollWobble 0.5s ease-in-out infinite alternate;
+      margin-bottom: 16px;
+    }
+    @keyframes trollWobble {
+      from { transform: rotate(-2deg) scale(1); }
+      to   { transform: rotate(2deg) scale(1.05); }
+    }
+
+    .video2-wrapper {
+      position: relative; z-index: 2;
+      width: min(94vw, 700px);
+      border-radius: 16px; overflow: hidden;
+      border: 5px solid #c41a00;
+      box-shadow: 0 0 0 5px #FFD700, 0 0 50px rgba(255,100,0,0.8), 0 15px 50px rgba(0,0,0,0.5);
+      animation: trollShake 0.3s ease-in-out infinite alternate;
+    }
+    @keyframes trollShake {
+      from { transform: rotate(-0.5deg); }
+      to   { transform: rotate(0.5deg); }
+    }
+    .video2-wrapper video { width: 100%; display: block; }
+
+    .troll-msg {
+      position: relative; z-index: 2;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.78);
+      border: 3px solid #FFD700;
+      border-radius: 16px;
+      padding: 20px 22px;
+      width: min(94vw, 700px);
+      text-align: center;
+      box-shadow: 0 0 35px rgba(255,215,0,0.5);
+    }
+    .troll-msg p {
+      font-family: 'Nunito', sans-serif; font-weight: 900;
+      font-size: clamp(1rem, 4vw, 1.8rem);
+      color: #FFD700;
+      text-shadow: 2px 2px 0 #c41a00, 0 0 18px rgba(255,215,0,0.8);
+      line-height: 1.6;
+    }
+    .troll-msg .highlight {
+      color: #fff; font-size: 1.15em;
+      text-shadow: 0 0 18px #FFD700, 2px 2px 0 #c41a00;
+    }
+
+    .gift-badge {
+      position: relative; z-index: 2;
+      margin-top: 16px; display: inline-block;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      border: 3px solid #c41a00; border-radius: 50px;
+      padding: 11px 26px;
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(0.95rem, 3.5vw, 1.4rem);
+      color: #c41a00;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+      animation: giftPop 0.6s ease-in-out infinite alternate;
+    }
+    @keyframes giftPop {
+      from { transform: scale(1) rotate(-2deg); }
+      to   { transform: scale(1.08) rotate(2deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1 ==================== -->
+<div id="page1">
+
+  <div class="floating-hearts" id="hearts"></div>
+
+  <!-- TITLE -->
+  <h1 class="p1-title">💖 Happy Birthday my #1 💖</h1>
+
+  <div class="rose-line">🌹 💕 🌹 💕 🌹</div>
+
+  <!-- VIDEO — big, centered, rotated -->
+  <div class="video-col">
+    <video controls autoplay muted loop playsinline webkit-playsinline>
+      <source src="video1.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+  <!-- Hint -->
+  <div class="hint-banner">
+    💌 Something very special is waiting just ahead... 💍🥺
+  </div>
+
+  <!-- QUESTION -->
+  <div class="question-card">
+    <p class="question-text">💝 Who is the #1 of Munnu? 💝</p>
+    <input
+      type="text"
+      class="answer-input"
+      id="answerInput"
+      placeholder="Type your answer... 🌸"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    <br/>
+    <button class="submit-btn" onclick="checkAnswer()">💌 &nbsp; Submit &nbsp; 💌</button>
+    <p class="error-msg" id="errorMsg">❌ Hmm, that's not right... Try again! 🥺</p>
+  </div>
+
+</div>
+
+<!-- ==================== PAGE 2 ==================== -->
+<div id="page2">
+
+  <div id="trollLayer"></div>
+
+  <h1 class="p2-header">😂 GOT YOU!!! 😂</h1>
+
+  <div class="video2-wrapper">
+    <video controls autoplay playsinline webkit-playsinline id="video2">
+      <source src="video2.mp4" type="video/mp4"/>
+    </video>
+  </div>
+
+  <div class="troll-msg">
+    <p>
+      😂🤣 You cannot Manipulate<br/>
+      the real <span class="highlight">Master Manipulator Aryan</span>...<br/>
+      I knew all along.... 🤣😂<br/><br/>
+      <span style="color:#ff6347; font-size:1.1em;">7 Tarik ka VedK ka gift tu lele</span> 🎁😂
+    </p>
+  </div>
+
+  <div class="gift-badge">🎁 &nbsp; Jaake gift le le bhai &nbsp; 🎁</div>
+
+</div>
+
+<script>
+  /* ── Floating hearts (fewer on mobile to save performance) ── */
+  (function() {
+    const container = document.getElementById('hearts');
+    const emojis = ['💖','💕','💗','💓','💝','🌹','✨','💘','💞','🌸'];
+    // detect mobile: fewer hearts
+    const count = window.innerWidth < 500 ? 18 : 30;
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('span');
+      el.className = 'heart-float';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (0.9 + Math.random() * 1.8) + 'rem';
+      el.style.animationDuration = (8 + Math.random() * 12) + 's';
+      el.style.animationDelay   = -(Math.random() * 15) + 's';
+      container.appendChild(el);
+    }
+  })();
+
+  /* ── Answer check (fully case-insensitive) ── */
+  function checkAnswer() {
+    const raw = document.getElementById('answerInput').value.trim().toLowerCase();
+    const errEl = document.getElementById('errorMsg');
+    if (raw === 'sunshine') {
+      goToPage2();
+    } else {
+      errEl.style.display = 'block';
+      errEl.style.animation = 'none';
+      void errEl.offsetWidth;
+      errEl.style.animation = 'shake 0.4s ease';
+    }
+  }
+
+  document.getElementById('answerInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      checkAnswer();
+    }
+  });
+
+  /* ── Scroll the page when keyboard opens on mobile ── */
+  document.getElementById('answerInput').addEventListener('focus', function() {
+    setTimeout(() => {
+      this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  });
+
+  /* ── Page transition ── */
+  function goToPage2() {
+    const p1 = document.getElementById('page1');
+    const p2 = document.getElementById('page2');
+    p1.style.transition = 'opacity 0.5s ease';
+    p1.style.opacity = '0';
+    setTimeout(() => {
+      p1.style.display = 'none';
+      p2.style.display = 'flex';
+      p2.style.opacity = '0';
+      p2.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => { p2.style.opacity = '1'; }, 40);
+      spawnTrollEmojis();
+      const v2 = document.getElementById('video2');
+      if (v2) { v2.muted = false; v2.play().catch(() => {}); }
+    }, 500);
+  }
+
+  /* ── Troll emojis (fewer on mobile for perf) ── */
+  function spawnTrollEmojis() {
+    const layer = document.getElementById('trollLayer');
+    const trolls = ['😂','🤣','💀','😭','🗿','🤡','💩','😆','🙃','😹','🤪','🫵','☠️','🔥','💯'];
+    const anims  = ['trollSpin','trollBounce','trollFloat'];
+    const count  = window.innerWidth < 500 ? 35 : 55;
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('span');
+      el.className = 'troll-emoji';
+      el.textContent = trolls[Math.floor(Math.random() * trolls.length)];
+      el.style.left     = Math.random() * 100 + 'vw';
+      el.style.top      = Math.random() * 100 + 'vh';
+      el.style.fontSize = (1.2 + Math.random() * 2.5) + 'rem';
+      const dur    = (2.5 + Math.random() * 4).toFixed(1) + 's';
+      const name   = anims[Math.floor(Math.random() * anims.length)];
+      const timing = name === 'trollSpin' ? 'linear' : 'ease-in-out';
+      el.style.animation = `${name} ${dur} ${timing} ${(Math.random() * -4).toFixed(1)}s infinite`;
+      el.style.opacity   = (0.5 + Math.random() * 0.5).toFixed(2);
+      layer.appendChild(el);
+    }
+  }
+</script>
+</body>
+</html>
